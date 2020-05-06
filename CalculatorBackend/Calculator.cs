@@ -7,7 +7,7 @@ namespace CalculatorBackend
     {
         public string CurrentCalc { get; set; }
         public List<Number> HistoryCalc { get; set; }
-        public Memory Mem { get;  }
+        public Memory Mem { get; }
 
         public Calculator()
         {
