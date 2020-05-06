@@ -7,7 +7,12 @@ namespace CalculatorBackend
     {
         public string CurrentCalc { get; set; }
         public List<Number> HistoryCalc { get; set; }
+        public Memory Mem { get;  }
 
+        public Calculator()
+        {
+            this.Mem = new Memory();
+        }
         public void ClearCurrent()
         {
             CurrentCalc = "0";
@@ -116,6 +121,38 @@ namespace CalculatorBackend
             }
             return totalValue.ToString();
 
+        }
+
+        public bool MemoryAdd()
+        {
+            bool success = decimal.TryParse(this.CurrentCalc, out decimal deciValue);
+            if(success)
+            {
+                Mem.MemoryAdd(deciValue);
+            }
+            return success;
+        }
+        public bool MemorySubtract()
+        {
+            bool success = decimal.TryParse(this.CurrentCalc, out decimal deciValue);
+            if (success)
+            {
+                Mem.MemorySubtract(deciValue);
+            }
+            return success;
+        }
+        public void MemoryRead()
+        {
+            this.CurrentCalc = this.Mem.Value.ToString();
+        }
+        public bool MemorySave()
+        {
+            bool success = decimal.TryParse(this.CurrentCalc, out decimal deciValue);
+            if (success)
+            {
+                Mem.MemorySave(deciValue);
+            }
+            return success;
         }
     }
 }

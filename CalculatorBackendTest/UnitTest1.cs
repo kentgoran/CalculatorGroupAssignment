@@ -8,8 +8,11 @@ namespace CalculatorBackendTest
     [TestClass]
     public class UnitTest1
     {
+
         private const string ZERO = "0";
         private const string NUMBS = "25";
+        private const decimal ZERODECI = 0m;
+        private const decimal EXPECTEDNUM = 25m;
         private readonly Number expectedNumberAddition = new Number(25m, Operator.Addition);
         private readonly Number expectedNumberSubtraction = new Number(25m, Operator.Subtraction);
         private readonly Number expectedNumberMultiplication = new Number(25m, Operator.Multiplication);
@@ -135,6 +138,56 @@ namespace CalculatorBackendTest
             calc.Equals();
 
             Assert.Fail();
+        }
+        [TestMethod]
+        public void MemoryAddFromCalcTest()
+        {
+            bool success = calc.MemoryAdd();
+            Assert.IsTrue(success);
+        }
+        [TestMethod]
+        public void MemoryAddFromCalcTest_ValueCheck()
+        {
+
+            calc.MemoryAdd();
+            Assert.AreEqual(EXPECTEDNUM, calc.Mem.Value );
+        }
+        [TestMethod]
+        public void MemorySubtractFromCalcTest()
+        {
+            bool success = calc.MemorySubtract();
+            Assert.IsTrue(success);
+        }
+        [TestMethod]
+        public void MemorySubtractFromCalcTest_ValueCheck()
+        {
+            calc.MemoryAdd();
+            calc.MemorySubtract();
+
+            Assert.AreEqual(ZERODECI, calc.Mem.Value);
+        }
+        [TestMethod]
+        public void MemoryReadTest()
+        {
+            calc.MemoryAdd();
+            calc.MemoryRead();
+
+            Assert.AreEqual(NUMBS, calc.CurrentCalc);
+        }
+
+        [TestMethod]
+        public void MemorySaveTest()
+        {
+            bool savedToMem = calc.MemorySave();
+
+            Assert.IsTrue(savedToMem);
+        }
+        [TestMethod]
+        public void MemorySaveTest_ValueCheck()
+        {
+            calc.MemorySave();
+
+            Assert.AreEqual(NUMBS, calc.CurrentCalc);
         }
     }
 }
