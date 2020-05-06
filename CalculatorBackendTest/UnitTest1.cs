@@ -9,9 +9,15 @@ namespace CalculatorBackendTest
     public class UnitTest1
     {
         private const string ZERO = "0";
-        private const string NUMBS = "25472";
-        private readonly Number expectedNumberAddition = new Number(25472m, Operator.Addition);
+        private const string NUMBS = "25";
+        private readonly Number expectedNumberAddition = new Number(25m, Operator.Addition);
+        private readonly Number expectedNumberSubtraction = new Number(25m, Operator.Subtraction);
+        private readonly Number expectedNumberMultiplication = new Number(25m, Operator.Multiplication);
+        private readonly Number expectedNumberDivision = new Number(25m, Operator.Division);
+        private readonly Number expectedNumberEquals = new Number(25m, Operator.Equals);
+        private readonly string expectedResult = "29";
         Calculator calc;
+
         [TestInitialize]
         public void CalcInit()
         {
@@ -20,9 +26,9 @@ namespace CalculatorBackendTest
                 CurrentCalc = NUMBS,
                 HistoryCalc = new List<Number> 
                 { 
-                    new Number(23, Operator.Division),
-                    new Number(18.7m, Operator.Subtraction),
-                    new Number(1.1m, Operator.Addition)
+                    new Number(10m, Operator.Division),
+                    new Number(2m, Operator.Subtraction),
+                    new Number(1m, Operator.Addition)
                 }
             };
         }
@@ -52,49 +58,73 @@ namespace CalculatorBackendTest
         }
 
         [TestMethod]
-        public void CalculatorAddMethodTest()
+        public void AdditionMethodTest()
         {
             bool success = calc.Addition();
             Assert.IsTrue(success);
         }
         [TestMethod]
-        public void CalculatorAddMethodTest_AddsToHistory()
+        public void AdditionMethodTest_AddsToHistory()
         {
-
             calc.Addition();
-
             Assert.AreEqual(expectedNumberAddition, calc.HistoryCalc[calc.HistoryCalc.Count - 1]);
         }
-        //
-        //   [TestMethod]
-        //   public void CalculatorSubstractMethodTest()
-        //   {
-        //       Calculator calculator = new Calculator();
-        //       bool success = calculator.Subtraction();
-        //       Assert.Istrue(success);
-        //
-        //       Asser.AreEqual(new List<Number> {});
-        //
-        //   }
-        //
-        //   [TestMethod]
-        //   public void CalculatorMultiplicationMethodTest()
-        //   {
-        //       Calculator calculator = new Calculator();
-        //       bool success = calculator.Multiplication();
-        //
-        //       Assert.IsTrue(success);
-        //   }
-        //
-        //   [TestMethod]
-        //   public void CalculatorDivisionMethodTest()
-        //   {
-        //       Calculator calculator = new Calculator();
-        //       bool success = calculator.Division();
-        //
-        //       Assert.IsTrue(success);
-        //   }
 
+        [TestMethod]
+        public void SubstractionMethodTest()
+        {
+            bool success = calc.Subtraction();
+            Assert.IsTrue(success);
+        }
 
+        [TestMethod]
+        public void SubstractionMethodTest_AddsToHistory()
+        {
+            calc.Subtraction();
+            Assert.AreEqual(expectedNumberSubtraction, calc.HistoryCalc[calc.HistoryCalc.Count - 1]);
+        }
+        [TestMethod]
+        public void MultiplicationMethodTest()
+        {
+            bool success = calc.Multiplication();
+            Assert.IsTrue(success);
+        }
+
+        [TestMethod]
+        public void MultiplicationMethodTest_AddsToHistory()
+        {
+            calc.Multiplication();
+            Assert.AreEqual(expectedNumberMultiplication, calc.HistoryCalc[calc.HistoryCalc.Count - 1]);
+        }
+        [TestMethod]
+        public void DivisionMethodTest()
+        {
+            bool success = calc.Division();
+            Assert.IsTrue(success);
+        }
+        [TestMethod]
+        public void DivisionMethodTest_AddsToHistory()
+        {
+            calc.Division();
+            Assert.AreEqual(expectedNumberDivision, calc.HistoryCalc[calc.HistoryCalc.Count - 1]);
+        }
+        [TestMethod]
+        public void EqualsMethodTest()
+        {
+            bool success = calc.Equals();
+            Assert.IsTrue(success);
+        }
+        [TestMethod]
+        public void EqualsMethodTest_AddsToHistory()
+        {
+            calc.Equals();
+            Assert.AreEqual(expectedNumberEquals, calc.HistoryCalc[calc.HistoryCalc.Count - 1]);
+        }
+        [TestMethod]
+        public void EqualsMethodTest_PrintsResult()
+        {
+            calc.Equals();
+            Assert.AreEqual(expectedResult, calc.CurrentCalc);
+        }
     }
 }
