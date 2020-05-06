@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CalculatorBackendTest
 {
     [TestClass]
-    public class UnitTestCalc
+    public class UnitTest1
     {
         private const string ZERO = "0";
         private const string NUMBS = "25";
