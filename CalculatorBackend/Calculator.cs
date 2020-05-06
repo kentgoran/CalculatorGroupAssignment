@@ -76,8 +76,8 @@ namespace CalculatorBackend
             bool success = Decimal.TryParse(CurrentCalc, out decimal valueToInput);
             if (success)
             {
-                CurrentCalc = this.CalculateHistory();
                 HistoryCalc.Add(new Number(valueToInput, Operator.Equals));
+                CurrentCalc = this.CalculateHistory();
                 return true;
             }
             return false;
@@ -85,17 +85,42 @@ namespace CalculatorBackend
 
         private string CalculateHistory()
         {
-            //decimal totalValue = 0;
-            //Operator nextOperator = Operator.Addition;
-            //foreach(var num in HistoryCalc)
-            //{
-            //    if(nextOperator)
-            //    {
+            decimal totalValue = 0;
+            //Initial set to Addition, as to add the first value to totalValue, before starting to calculate the rest
+            Operator nextOperator = Operator.Addition;
+            foreach (var num in HistoryCalc)
+            {
+                switch (nextOperator)
+                {
+                    case Operator.Addition:
+                        totalValue += num.value;
+                        break;
+                    case Operator.Subtraction:
+                        totalValue -= num.value;
+                        break;
+                    case Operator.Division:
+                        if(num.value != 0)
+                        {
+                            totalValue /= num.value;
+                        }
+                        else
+                        {
+                            throw new DivideByZeroException("Can't divide by zero");
+                        }
+                        break;
+                    case Operator.Multiplication:
+                        totalValue *= num.value;
+                        break;
+                    case Operator.Equals:
+                        //End of the list
+                        break;
+                    default:
+                        break;
+                }
+                nextOperator = num.calcOperator;
+            }
+            return totalValue.ToString();
 
-            //    }
-            //    nextOperator = num.calcOperator;
-            //}
-            throw new NotImplementedException();
         }
 
         public bool MemoryAdd()
