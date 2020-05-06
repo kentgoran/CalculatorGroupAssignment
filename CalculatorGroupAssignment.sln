@@ -5,9 +5,12 @@ VisualStudioVersion = 16.0.29920.165
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorGroupAssignment", "CalculatorGroupAssignment\CalculatorGroupAssignment.csproj", "{D500C92B-73D9-426D-BDDA-BADDBE0CF975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorBackend", "CalculatorBackend\CalculatorBackend.csproj", "{3E125F05-CD4D-40AC-ACDA-79568E3B3FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CalculatorBackend", "CalculatorBackend\CalculatorBackend.csproj", "{3E125F05-CD4D-40AC-ACDA-79568E3B3FE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CalculatorBackendTest", "CalculatorBackendTest\CalculatorBackendTest.csproj", "{DFCCD1DF-FA0E-4B21-9A68-F1A49A33F3ED}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3E125F05-CD4D-40AC-ACDA-79568E3B3FE7} = {3E125F05-CD4D-40AC-ACDA-79568E3B3FE7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
