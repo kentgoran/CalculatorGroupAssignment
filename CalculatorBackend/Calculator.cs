@@ -126,7 +126,7 @@ namespace CalculatorBackend
         public bool MemoryAdd()
         {
             bool success = decimal.TryParse(this.CurrentCalc, out decimal deciValue);
-            if(success)
+            if (success)
             {
                 Mem.MemoryAdd(deciValue);
             }
