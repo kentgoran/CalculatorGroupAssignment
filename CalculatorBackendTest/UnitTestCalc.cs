@@ -15,7 +15,7 @@ namespace CalculatorBackendTest
         private readonly Number expectedNumberMultiplication = new Number(25m, Operator.Multiplication);
         private readonly Number expectedNumberDivision = new Number(25m, Operator.Division);
         private readonly Number expectedNumberEquals = new Number(25m, Operator.Equals);
-        private readonly string expectedResult = "29";
+        private readonly string expectedResult = "275";
         Calculator calc;
 
         [TestInitialize]
@@ -28,7 +28,8 @@ namespace CalculatorBackendTest
                 { 
                     new Number(10m, Operator.Division),
                     new Number(2m, Operator.Subtraction),
-                    new Number(1m, Operator.Addition)
+                    new Number(1m, Operator.Addition),
+                    new Number(7m, Operator.Multiplication)
                 }
             };
         }
@@ -125,6 +126,15 @@ namespace CalculatorBackendTest
         {
             calc.Equals();
             Assert.AreEqual(expectedResult, calc.CurrentCalc);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(DivideByZeroException))]
+        public void EqualsMethodTest_AttemptToDivideByZero_ThrowsDivideByZeroException()
+        {
+            calc.Division();
+            calc.Equals();
+
+            Assert.Fail();
         }
     }
 }

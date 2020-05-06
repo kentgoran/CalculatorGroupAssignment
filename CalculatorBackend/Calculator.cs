@@ -81,6 +81,7 @@ namespace CalculatorBackend
         private string CalculateHistory()
         {
             decimal totalValue = 0;
+            //Initial set to Addition, as to add the first value to totalValue, before starting to calculate the rest
             Operator nextOperator = Operator.Addition;
             foreach (var num in HistoryCalc)
             {
@@ -106,6 +107,7 @@ namespace CalculatorBackend
                         totalValue *= num.value;
                         break;
                     case Operator.Equals:
+                        //End of the list
                         break;
                     default:
                         break;
