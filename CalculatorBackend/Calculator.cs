@@ -88,7 +88,7 @@ namespace CalculatorBackend
             decimal totalValue = 0;
             //Initial set to Addition, as to add the first value to totalValue, before starting to calculate the rest
             Operator nextOperator = Operator.Addition;
-            foreach (var num in HistoryCalc)
+            foreach (Number num in HistoryCalc)
             {
                 switch (nextOperator)
                 {
